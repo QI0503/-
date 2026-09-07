@@ -1,0 +1,43 @@
+<!-- 收藏页 - ZQQ&LWW的云厨房 -->
+<view class="page-favorites">
+  <!-- 收藏列表 -->
+  <view class="favorites-list" wx:if="{{favorites.length > 0}}">
+    <view class="recipe-card" wx:for="{{favorites}}" wx:key="_id" bindtap="goToDetail" data-id="{{item._id}}">
+      <image class="recipe-cover" src="{{item.coverImage}}" mode="aspectFill"></image>
+      <view class="recipe-info">
+        <text class="recipe-name">{{item.name}}</text>
+        <text class="recipe-desc ellipsis-2">{{item.coverDesc}}</text>
+        <view class="recipe-meta">
+          <view class="meta-item">
+            <image class="meta-icon" src="/images/icons/icon_time.png" mode="aspectFit"></image>
+            <text>{{item.duration}}分钟</text>
+          </view>
+          <view class="meta-item">
+            <image class="meta-icon" src="/images/icons/icon_difficulty.png" mode="aspectFit"></image>
+            <text>{{item.difficultyText}}</text>
+          </view>
+          <view class="meta-item">
+            <text class="tag">{{item.category.cuisine}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="favorite-btn active" catchtap="removeFavorite" data-id="{{item._id}}" data-index="{{index}}">
+        <image src="/images/icons/icon_collect_active.png" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{favorites.length === 0 && !loading}}">
+    <image src="/images/empty/empty_fav.png" mode="aspectFit"></image>
+    <text>还没有收藏的菜谱哦</text>
+    <view class="empty-btn" bindtap="goToIndex">
+      <text>去发现美食</text>
+    </view>
+  </view>
+
+  <!-- 加载中 -->
+  <view class="loading-state" wx:if="{{loading}}">
+    <text>加载中...</text>
+  </view>
+</view>

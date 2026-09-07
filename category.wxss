@@ -1,0 +1,195 @@
+/* 分类页样式 */
+
+.page-category {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* 分类Tab */
+.category-tabs {
+  display: flex;
+  background: #fff;
+  padding: 20rpx 0;
+  box-shadow: 0 4rpx 15rpx rgba(255, 107, 157, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 15rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  position: relative;
+}
+
+.tab-item.active {
+  color: #FF6B9D;
+  font-weight: bold;
+}
+
+.tab-item.active::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60rpx;
+  height: 6rpx;
+  background: linear-gradient(135deg, #FF6B9D, #FF8C42);
+  border-radius: 3rpx;
+}
+
+/* 分类内容 */
+.category-content {
+  flex: 1;
+  padding: 30rpx;
+}
+
+/* 分类图标网格 */
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30rpx;
+}
+
+.category-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30rpx 0;
+  background: #fff;
+  border-radius: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(255, 107, 157, 0.1);
+  transition: transform 0.2s;
+}
+
+.category-item:active {
+  transform: scale(0.95);
+}
+
+.category-icon-wrap {
+  width: 100rpx;
+  height: 100rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15rpx;
+}
+
+.category-icon {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.category-name {
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 菜谱列表 */
+.list-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30rpx;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  padding: 10rpx 20rpx;
+  background: #FFF5F8;
+  border-radius: 30rpx;
+}
+
+.back-icon {
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 10rpx;
+}
+
+.back-btn text {
+  font-size: 26rpx;
+  color: #FF6B9D;
+}
+
+.list-title {
+  flex: 1;
+  text-align: center;
+  font-size: 34rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.list-count {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 菜谱网格 */
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+}
+
+.recipe-card {
+  background: #fff;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 20rpx rgba(255, 107, 157, 0.1);
+}
+
+.recipe-cover {
+  width: 100%;
+  height: 220rpx;
+}
+
+.recipe-info {
+  padding: 15rpx 20rpx;
+}
+
+.recipe-name {
+  font-size: 28rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.recipe-meta {
+  display: flex;
+  justify-content: space-between;
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100rpx 0;
+}
+
+.empty-state image {
+  width: 250rpx;
+  height: 250rpx;
+  margin-bottom: 30rpx;
+}
+
+.empty-state text {
+  color: #999;
+  font-size: 28rpx;
+}
+
+/* 加载更多 */
+.load-more {
+  text-align: center;
+  padding: 30rpx 0;
+  color: #999;
+  font-size: 26rpx;
+}

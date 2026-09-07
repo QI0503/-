@@ -1,0 +1,64 @@
+<!-- 做菜记录页 - ZQQ&LWW的云厨房 -->
+<view class="page-record">
+  <!-- 统计信息 -->
+  <view class="stats-section">
+    <view class="stat-item">
+      <text class="stat-number">{{totalCount}}</text>
+      <text class="stat-label">总做菜次数</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-number">{{thisMonthCount}}</text>
+      <text class="stat-label">本月做菜</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-number">{{streakDays}}</text>
+      <text class="stat-label">连续做菜</text>
+    </view>
+  </view>
+
+  <!-- 添加记录按钮 -->
+  <view class="add-btn" bindtap="goToAdd">
+    <text>+ 添加做菜记录</text>
+  </view>
+
+  <!-- 记录列表 -->
+  <view class="records-section" wx:if="{{records.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">做菜时间线</text>
+    </view>
+    
+    <view class="timeline">
+      <view class="timeline-item" wx:for="{{records}}" wx:key="_id">
+        <view class="timeline-dot"></view>
+        <view class="timeline-line" wx:if="{{index < records.length - 1}}"></view>
+        <view class="timeline-card" bindtap="goToDetail" data-id="{{item.recipeId}}">
+          <view class="card-header">
+            <text class="recipe-name">{{item.recipeName}}</text>
+            <text class="cook-date">{{item.cookDateText}}</text>
+          </view>
+          <image class="cook-photo" wx:if="{{item.photo}}" src="{{item.photo}}" mode="aspectFill"></image>
+          <text class="cook-note" wx:if="{{item.note}}">{{item.note}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 加载更多 -->
+    <view class="load-more" wx:if="{{hasMore}}" bindtap="loadMore">
+      <text>加载更多</text>
+    </view>
+    <view class="load-more" wx:if="{{!hasMore && records.length > 0}}">
+      <text>没有更多了~</text>
+    </view>
+  </view>
+
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{records.length === 0 && !loading}}">
+    <image src="/images/empty/empty_record.png" mode="aspectFit"></image>
+    <text>还没有做菜记录哦</text>
+    <view class="empty-btn" bindtap="goToAdd">
+      <text>开始记录</text>
+    </view>
+  </view>
+</view>

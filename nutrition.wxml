@@ -1,0 +1,145 @@
+<!-- 营养统计页 - ZQQ&LWW的云厨房 -->
+<view class="page-nutrition">
+  <!-- 统计切换 -->
+  <view class="tabs-section">
+    <view class="tab-item {{activeTab === 'daily' ? 'active' : ''}}" bindtap="switchTab" data-tab="daily">
+      <text>今日统计</text>
+    </view>
+    <view class="tab-item {{activeTab === 'weekly' ? 'active' : ''}}" bindtap="switchTab" data-tab="weekly">
+      <text>本周统计</text>
+    </view>
+  </view>
+
+  <!-- 今日统计 -->
+  <view class="daily-section" wx:if="{{activeTab === 'daily'}}">
+    <view class="date-nav">
+      <view class="nav-btn" bindtap="prevDay">
+        <text>前一天</text>
+      </view>
+      <text class="current-date">{{currentDate}}</text>
+      <view class="nav-btn {{isToday ? 'disabled' : ''}}" bindtap="nextDay">
+        <text>后一天</text>
+      </view>
+    </view>
+
+    <view class="nutrition-cards">
+      <view class="nutrition-card calories">
+        <view class="card-header">
+          <text class="card-title">热量</text>
+          <text class="card-unit">千卡</text>
+        </view>
+        <text class="card-value">{{dailyNutrition.calories}}</text>
+        <view class="card-bar">
+          <view class="bar-fill" style="width: {{dailyCaloriesPercent}}%"></view>
+        </view>
+        <text class="card-target">目标：{{targetCalories}}千卡</text>
+      </view>
+
+      <view class="nutrition-card protein">
+        <view class="card-header">
+          <text class="card-title">蛋白质</text>
+          <text class="card-unit">克</text>
+        </view>
+        <text class="card-value">{{dailyNutrition.protein}}</text>
+        <view class="card-bar">
+          <view class="bar-fill" style="width: {{dailyProteinPercent}}%"></view>
+        </view>
+        <text class="card-target">目标：{{targetProtein}}克</text>
+      </view>
+
+      <view class="nutrition-card fat">
+        <view class="card-header">
+          <text class="card-title">脂肪</text>
+          <text class="card-unit">克</text>
+        </view>
+        <text class="card-value">{{dailyNutrition.fat}}</text>
+        <view class="card-bar">
+          <view class="bar-fill" style="width: {{dailyFatPercent}}%"></view>
+        </view>
+        <text class="card-target">目标：{{targetFat}}克</text>
+      </view>
+
+      <view class="nutrition-card carbs">
+        <view class="card-header">
+          <text class="card-title">碳水</text>
+          <text class="card-unit">克</text>
+        </view>
+        <text class="card-value">{{dailyNutrition.carbs}}</text>
+        <view class="card-bar">
+          <view class="bar-fill" style="width: {{dailyCarbsPercent}}%"></view>
+        </view>
+        <text class="card-target">目标：{{targetCarbs}}克</text>
+      </view>
+    </view>
+
+    <!-- 今日菜谱记录 -->
+    <view class="today-recipes" wx:if="{{todayRecipes.length > 0}}">
+      <view class="section-header">
+        <text class="section-title">今日做过的菜</text>
+      </view>
+      <view class="recipe-list">
+        <view class="recipe-item" wx:for="{{todayRecipes}}" wx:key="_id" bindtap="goToDetail" data-id="{{item.recipeId}}">
+          <text class="recipe-name">{{item.recipeName}}</text>
+          <text class="recipe-nutrition">{{item.nutritionText}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:if="{{todayRecipes.length === 0}}">
+      <text>今天还没有做菜记录哦</text>
+    </view>
+  </view>
+
+  <!-- 本周统计 -->
+  <view class="weekly-section" wx:if="{{activeTab === 'weekly'}}">
+    <view class="week-nav">
+      <view class="nav-btn" bindtap="prevWeek">
+        <text>上一周</text>
+      </view>
+      <text class="current-week">{{currentWeekText}}</text>
+      <view class="nav-btn {{isThisWeek ? 'disabled' : ''}}" bindtap="nextWeek">
+        <text>下一周</text>
+      </view>
+    </view>
+
+    <view class="chart-section">
+      <view class="chart-title">本周营养摄入趋势</view>
+      <view class="chart-container">
+        <view class="chart-bars">
+          <view class="chart-bar-group" wx:for="{{weeklyChart}}" wx:key="date">
+            <view class="chart-bar" style="height: {{item.percent}}%"></view>
+            <text class="chart-label">{{item.day}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="weekly-summary">
+      <view class="section-header">
+        <text class="section-title">本周汇总</text>
+      </view>
+      <view class="summary-grid">
+        <view class="summary-item">
+          <text class="summary-value">{{weeklyNutrition.calories}}</text>
+          <text class="summary-label">总热量（千卡）</text>
+          <text class="summary-avg">日均 {{weeklyAvg.calories}}</text>
+        </view>
+        <view class="summary-item">
+          <text class="summary-value">{{weeklyNutrition.protein}}</text>
+          <text class="summary-label">总蛋白质（克）</text>
+          <text class="summary-avg">日均 {{weeklyAvg.protein}}</text>
+        </view>
+        <view class="summary-item">
+          <text class="summary-value">{{weeklyNutrition.fat}}</text>
+          <text class="summary-label">总脂肪（克）</text>
+          <text class="summary-avg">日均 {{weeklyAvg.fat}}</text>
+        </view>
+        <view class="summary-item">
+          <text class="summary-value">{{weeklyNutrition.carbs}}</text>
+          <text class="summary-label">总碳水（克）</text>
+          <text class="summary-avg">日均 {{weeklyAvg.carbs}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,61 @@
+<!-- 购物清单页 - ZQQ&LWW的云厨房 -->
+<view class="page-shopping">
+  <!-- 当前清单 -->
+  <view class="current-section" wx:if="{{currentList}}">
+    <view class="section-header">
+      <text class="section-title">{{currentList.name}}</text>
+      <view class="complete-btn" bindtap="completeList">
+        <text>完成清单</text>
+      </view>
+    </view>
+    
+    <view class="items-list">
+      <view class="item-card {{item.checked ? 'checked' : ''}}" wx:for="{{currentList.items}}" wx:key="name" bindtap="toggleItem" data-index="{{index}}">
+        <view class="check-box">
+          <image wx:if="{{item.checked}}" src="/images/icons/icon_check_active.png" mode="aspectFit"></image>
+          <image wx:else src="/images/icons/icon_check.png" mode="aspectFit"></image>
+        </view>
+        <text class="item-name">{{item.name}}</text>
+        <text class="item-amount">{{item.amount}}{{item.unit}}</text>
+      </view>
+    </view>
+
+    <view class="progress-bar">
+      <view class="progress-text">
+        <text>已完成 {{checkedCount}}/{{totalCount}}</text>
+      </view>
+      <view class="progress-track">
+        <view class="progress-fill" style="width: {{progressPercent}}%"></view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 历史清单 -->
+  <view class="history-section">
+    <view class="section-header">
+      <text class="section-title">历史清单</text>
+    </view>
+    
+    <view class="history-list" wx:if="{{historyLists.length > 0}}">
+      <view class="history-card" wx:for="{{historyLists}}" wx:key="_id" bindtap="expandList" data-index="{{index}}">
+        <view class="history-header">
+          <text class="history-name">{{item.name}}</text>
+          <text class="history-date">{{item.dateText}}</text>
+        </view>
+        <view class="history-items" wx:if="{{item.expanded}}">
+          <view class="history-item" wx:for="{{item.items}}" wx:for-item="food" wx:key="name">
+            <text class="{{food.checked ? 'checked-text' : ''}}">{{food.name}} {{food.amount}}{{food.unit}}</text>
+          </view>
+        </view>
+        <view class="expand-btn">
+          <text>{{item.expanded ? '收起' : '展开'}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="empty-state" wx:if="{{historyLists.length === 0}}">
+      <image src="/images/empty/empty_list.png" mode="aspectFit"></image>
+      <text>还没有历史清单</text>
+    </view>
+  </view>
+</view>

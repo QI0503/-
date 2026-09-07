@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/category/category",
+    "pages/favorites/favorites",
+    "pages/profile/profile",
+    "pages/search/search",
+    "pages/recipe-detail/recipe-detail",
+    "pages/fridge/fridge",
+    "pages/shopping/shopping",
+    "pages/nutrition/nutrition",
+    "pages/cook-record/cook-record",
+    "pages/add-record/add-record"
+  ],
+  "window": {
+    "backgroundColor": "#FFF5F8",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FF6B9D",
+    "navigationBarTitleText": "ZQQ&LWW的云厨房",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#FF6B9D",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/icons/tab_home.png",
+        "selectedIconPath": "images/icons/tab_home_active.png"
+      },
+      {
+        "pagePath": "pages/category/category",
+        "text": "分类",
+        "iconPath": "images/icons/tab_category.png",
+        "selectedIconPath": "images/icons/tab_category_active.png"
+      },
+      {
+        "pagePath": "pages/favorites/favorites",
+        "text": "收藏",
+        "iconPath": "images/icons/tab_fav.png",
+        "selectedIconPath": "images/icons/tab_fav_active.png"
+      },
+      {
+        "pagePath": "pages/profile/profile",
+        "text": "我的",
+        "iconPath": "images/icons/tab_profile.png",
+        "selectedIconPath": "images/icons/tab_profile_active.png"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json",
+  "useExtendedLib": {
+    "weui": true
+  },
+  "cloud": true
+}

@@ -1,0 +1,85 @@
+<!-- 我的页面 - ZQQ&LWW的云厨房 -->
+<view class="page-profile">
+  <!-- 用户头像区域 -->
+  <view class="user-header">
+    <view class="user-avatar">
+      <image src="/images/icons/logo.png" mode="aspectFill"></image>
+    </view>
+    <text class="user-name">ZQQ & LWW</text>
+    <text class="user-desc">我们的云厨房</text>
+  </view>
+
+  <!-- 统计数据 -->
+  <view class="stats-card">
+    <view class="stat-item" bindtap="goToPage" data-url="/pages/cook-record/cook-record">
+      <text class="stat-number">{{cookCount}}</text>
+      <text class="stat-label">做菜次数</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item" bindtap="goToPage" data-url="/pages/favorites/favorites">
+      <text class="stat-number">{{favoriteCount}}</text>
+      <text class="stat-label">收藏菜谱</text>
+    </view>
+    <view class="stat-divider"></view>
+    <view class="stat-item">
+      <text class="stat-number">{{streakDays}}</text>
+      <text class="stat-label">连续做菜</text>
+    </view>
+  </view>
+
+  <!-- 功能菜单 -->
+  <view class="menu-section">
+    <view class="menu-title">常用功能</view>
+    <view class="menu-list">
+      <view class="menu-item" bindtap="goToPage" data-url="/pages/cook-record/cook-record">
+        <view class="menu-icon record-icon">📝</view>
+        <text class="menu-text">做菜记录</text>
+        <image class="menu-arrow" src="/images/icons/icon_arrow.png" mode="aspectFit"></image>
+      </view>
+      <view class="menu-item" bindtap="goToPage" data-url="/pages/nutrition/nutrition">
+        <view class="menu-icon nutrition-icon">📊</view>
+        <text class="menu-text">营养统计</text>
+        <image class="menu-arrow" src="/images/icons/icon_arrow.png" mode="aspectFit"></image>
+      </view>
+      <view class="menu-item" bindtap="goToPage" data-url="/pages/shopping/shopping">
+        <view class="menu-icon shopping-icon">🛒</view>
+        <text class="menu-text">购物清单</text>
+        <image class="menu-arrow" src="/images/icons/icon_arrow.png" mode="aspectFit"></image>
+      </view>
+      <view class="menu-item" bindtap="goToPage" data-url="/pages/fridge/fridge">
+        <view class="menu-icon fridge-icon">🍳</view>
+        <text class="menu-text">冰箱推荐</text>
+        <image class="menu-arrow" src="/images/icons/icon_arrow.png" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+
+  <view class="menu-section">
+    <view class="menu-title">设置</view>
+    <view class="menu-list">
+      <view class="menu-item" bindtap="goToPage" data-url="/pages/profile/dislike">
+        <view class="menu-icon dislike-icon">🚫</view>
+        <text class="menu-text">忌口设置</text>
+        <view class="menu-value">
+          <text wx:if="{{dislikeCount > 0}}">{{dislikeCount}}项</text>
+          <text wx:else>未设置</text>
+        </view>
+        <image class="menu-arrow" src="/images/icons/icon_arrow.png" mode="aspectFit"></image>
+      </view>
+      <view class="menu-item" bindtap="clearCache">
+        <view class="menu-icon cache-icon">🗑️</view>
+        <text class="menu-text">清除缓存</text>
+        <view class="menu-value">
+          <text>{{cacheSize}}</text>
+        </view>
+        <image class="menu-arrow" src="/images/icons/icon_arrow.png" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 关于 -->
+  <view class="about-section">
+    <text class="about-text">ZQQ & LWW的云厨房 v1.0.0</text>
+    <text class="about-text">用心做每一道菜 ❤️</text>
+  </view>
+</view>

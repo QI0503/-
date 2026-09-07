@@ -1,0 +1,85 @@
+<!-- 添加做菜记录页 - ZQQ&LWW的云厨房 -->
+<view class="page-add-record">
+  <!-- 选择菜谱 -->
+  <view class="section recipe-section">
+    <view class="section-header">
+      <text class="section-title">选择菜谱</text>
+    </view>
+    
+    <view class="selected-recipe" wx:if="{{selectedRecipe}}" bindtap="changeRecipe">
+      <image class="recipe-cover" src="{{selectedRecipe.coverImage}}" mode="aspectFill"></image>
+      <text class="recipe-name">{{selectedRecipe.name}}</text>
+      <text class="change-text">更换</text>
+    </view>
+    
+    <view class="select-recipe-btn" wx:else bindtap="showRecipePicker">
+      <text>点击选择菜谱</text>
+    </view>
+  </view>
+
+  <!-- 做菜日期 -->
+  <view class="section date-section">
+    <view class="section-header">
+      <text class="section-title">做菜日期</text>
+    </view>
+    <picker mode="date" value="{{cookDate}}" bindchange="onDateChange">
+      <view class="date-picker">
+        <text>{{cookDate || '选择日期'}}</text>
+      </view>
+    </picker>
+  </view>
+
+  <!-- 上传照片 -->
+  <view class="section photo-section">
+    <view class="section-header">
+      <text class="section-title">成品照片</text>
+    </view>
+    
+    <view class="photo-area" wx:if="{{photo}}" bindtap="previewPhoto">
+      <image class="photo-preview" src="{{photo}}" mode="aspectFill"></image>
+      <view class="photo-delete" catchtap="deletePhoto">×</view>
+    </view>
+    
+    <view class="photo-upload" wx:else bindtap="choosePhoto">
+      <image class="camera-icon" src="/images/icons/icon_camera.png" mode="aspectFit"></image>
+      <text>拍照/从相册选择</text>
+    </view>
+  </view>
+
+  <!-- 做菜感受 -->
+  <view class="section note-section">
+    <view class="section-header">
+      <text class="section-title">做菜感受</text>
+    </view>
+    <textarea class="note-input" placeholder="记录一下这次做菜的感受吧..." value="{{note}}" bindinput="onNoteInput" maxlength="500"></textarea>
+    <text class="note-count">{{note.length}}/500</text>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-btn-wrap">
+    <view class="submit-btn {{canSubmit ? '' : 'disabled'}}" bindtap="submitRecord">
+      <text>保存记录</text>
+    </view>
+  </view>
+</view>
+
+<!-- 菜谱选择弹窗 -->
+<view class="recipe-picker-mask" wx:if="{{showPicker}}" bindtap="hideRecipePicker">
+  <view class="recipe-picker" catchtap="stopPropagation">
+    <view class="picker-header">
+      <text class="picker-title">选择菜谱</text>
+      <view class="picker-close" bindtap="hideRecipePicker">×</view>
+    </view>
+    
+    <view class="picker-search">
+      <input class="search-input" placeholder="搜索菜谱..." value="{{searchKeyword}}" bindinput="onSearchInput"></input>
+    </view>
+    
+    <scroll-view class="picker-list" scroll-y>
+      <view class="picker-item" wx:for="{{pickerList}}" wx:key="_id" bindtap="selectRecipe" data-index="{{index}}">
+        <image class="item-cover" src="{{item.coverImage}}" mode="aspectFill"></image>
+        <text class="item-name">{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+</view>

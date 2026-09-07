@@ -1,0 +1,271 @@
+/* 营养统计页样式 */
+
+.page-nutrition {
+  padding-bottom: 30rpx;
+}
+
+/* Tab切换 */
+.tabs-section {
+  display: flex;
+  background: #fff;
+  padding: 20rpx;
+  box-shadow: 0 4rpx 15rpx rgba(255, 107, 157, 0.1);
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 15rpx 0;
+  font-size: 28rpx;
+  color: #666;
+  border-radius: 30rpx;
+}
+
+.tab-item.active {
+  background: linear-gradient(135deg, #FF6B9D, #FF8FB5);
+  color: #fff;
+}
+
+/* 日期导航 */
+.date-nav,
+.week-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx;
+}
+
+.nav-btn {
+  padding: 10rpx 25rpx;
+  background: #FFF5F8;
+  border-radius: 30rpx;
+}
+
+.nav-btn.disabled {
+  opacity: 0.5;
+}
+
+.nav-btn text {
+  font-size: 26rpx;
+  color: #FF6B9D;
+}
+
+.current-date,
+.current-week {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 营养卡片 */
+.nutrition-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+  padding: 0 30rpx;
+}
+
+.nutrition-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 25rpx;
+  box-shadow: 0 4rpx 20rpx rgba(255, 107, 157, 0.1);
+}
+
+.card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15rpx;
+}
+
+.card-title {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.card-unit {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.card-value {
+  font-size: 44rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 15rpx;
+}
+
+.calories .card-value { color: #FF6B9D; }
+.protein .card-value { color: #FF8C42; }
+.fat .card-value { color: #4CAF50; }
+.carbs .card-value { color: #2196F3; }
+
+.card-bar {
+  height: 10rpx;
+  background: #F5F5F5;
+  border-radius: 5rpx;
+  overflow: hidden;
+  margin-bottom: 10rpx;
+}
+
+.calories .bar-fill { background: linear-gradient(135deg, #FF6B9D, #FF8FB5); }
+.protein .bar-fill { background: linear-gradient(135deg, #FF8C42, #FFB74D); }
+.fat .bar-fill { background: linear-gradient(135deg, #4CAF50, #81C784); }
+.carbs .bar-fill { background: linear-gradient(135deg, #2196F3, #64B5F6); }
+
+.bar-fill {
+  height: 100%;
+  border-radius: 5rpx;
+  transition: width 0.3s;
+}
+
+.card-target {
+  font-size: 22rpx;
+  color: #999;
+}
+
+/* 今日菜谱 */
+.today-recipes {
+  margin: 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 25rpx;
+  box-shadow: 0 4rpx 20rpx rgba(255, 107, 157, 0.1);
+}
+
+.section-header {
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.recipe-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.recipe-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15rpx 0;
+  border-bottom: 1rpx solid #FFF5F8;
+}
+
+.recipe-item:last-child {
+  border-bottom: none;
+}
+
+.recipe-name {
+  font-size: 28rpx;
+  color: #333;
+}
+
+.recipe-nutrition {
+  font-size: 24rpx;
+  color: #FF6B9D;
+}
+
+/* 本周图表 */
+.chart-section {
+  margin: 0 30rpx 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 25rpx;
+  box-shadow: 0 4rpx 20rpx rgba(255, 107, 157, 0.1);
+}
+
+.chart-title {
+  font-size: 28rpx;
+  color: #666;
+  margin-bottom: 25rpx;
+}
+
+.chart-container {
+  height: 300rpx;
+}
+
+.chart-bars {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  height: 250rpx;
+  padding: 0 10rpx;
+}
+
+.chart-bar-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+}
+
+.chart-bar {
+  width: 40rpx;
+  background: linear-gradient(135deg, #FF6B9D, #FF8FB5);
+  border-radius: 10rpx 10rpx 0 0;
+  min-height: 10rpx;
+}
+
+.chart-label {
+  font-size: 22rpx;
+  color: #999;
+  margin-top: 10rpx;
+}
+
+/* 本周汇总 */
+.weekly-summary {
+  margin: 0 30rpx;
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 25rpx;
+  box-shadow: 0 4rpx 20rpx rgba(255, 107, 157, 0.1);
+}
+
+.summary-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20rpx;
+}
+
+.summary-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20rpx;
+  background: #FFF5F8;
+  border-radius: 15rpx;
+}
+
+.summary-value {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #FF6B9D;
+}
+
+.summary-label {
+  font-size: 24rpx;
+  color: #666;
+  margin: 10rpx 0;
+}
+
+.summary-avg {
+  font-size: 22rpx;
+  color: #999;
+}
+
+/* 空状态 */
+.empty-state {
+  text-align: center;
+  padding: 80rpx 0;
+}
+
+.empty-state text {
+  color: #999;
+  font-size: 28rpx;
+}

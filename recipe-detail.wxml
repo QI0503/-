@@ -1,0 +1,138 @@
+<!-- 菜谱详情页 - ZQQ&LWW的云厨房 -->
+<view class="page-detail" wx:if="{{recipe}}">
+  <!-- 封面图 -->
+  <view class="cover-section">
+    <image class="cover-image" src="{{recipe.coverImage}}" mode="aspectFill"></image>
+    <view class="cover-overlay">
+      <view class="back-btn" bindtap="goBack">
+        <image src="/images/icons/icon_back.png" mode="aspectFit"></image>
+      </view>
+      <view class="favorite-btn {{isFavorite ? 'active' : ''}}" bindtap="toggleFavorite">
+        <image src="{{isFavorite ? '/images/icons/icon_collect_active.png' : '/images/icons/icon_collect.png'}}" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 基本信息 -->
+  <view class="info-section">
+    <text class="recipe-name">{{recipe.name}}</text>
+    <text class="recipe-desc">{{recipe.coverDesc}}</text>
+    
+    <view class="meta-row">
+      <view class="meta-item">
+        <image class="meta-icon" src="/images/icons/icon_time.png" mode="aspectFit"></image>
+        <text>{{recipe.duration}}分钟</text>
+      </view>
+      <view class="meta-item">
+        <image class="meta-icon" src="/images/icons/icon_difficulty.png" mode="aspectFit"></image>
+        <text>{{difficultyText}}</text>
+      </view>
+      <view class="meta-item">
+        <image class="meta-icon" src="/images/icons/icon_serving.png" mode="aspectFit"></image>
+        <text>{{recipe.servings}}人份</text>
+      </view>
+    </view>
+
+    <view class="tags-row">
+      <text class="tag" wx:for="{{recipe.tags}}" wx:key="*this">{{item}}</text>
+    </view>
+  </view>
+
+  <!-- 食材清单 -->
+  <view class="section ingredients-section">
+    <view class="section-header">
+      <text class="section-title">食材清单</text>
+      <view class="add-list-btn" bindtap="addToShoppingList">
+        <text>加入购物清单</text>
+      </view>
+    </view>
+    <view class="ingredients-list">
+      <view class="ingredient-item" wx:for="{{recipe.ingredients}}" wx:key="name">
+        <text class="ingredient-name">{{item.name}}</text>
+        <text class="ingredient-amount">{{item.amount}}{{item.unit}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 工具清单 -->
+  <view class="section tools-section">
+    <view class="section-header">
+      <text class="section-title">所需工具</text>
+    </view>
+    <view class="tools-list">
+      <view class="tool-item" wx:for="{{recipe.tools}}" wx:key="*this">
+        <text>{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 做法步骤 -->
+  <view class="section steps-section">
+    <view class="section-header">
+      <text class="section-title">做法步骤</text>
+    </view>
+    <view class="steps-list">
+      <view class="step-item" wx:for="{{recipe.steps}}" wx:key="step">
+        <view class="step-number">{{item.step}}</view>
+        <view class="step-content">
+          <text class="step-desc">{{item.desc}}</text>
+          <image class="step-image" wx:if="{{item.image}}" src="{{item.image}}" mode="widthFix" bindtap="previewImage" data-url="{{item.image}}"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 营养成分 -->
+  <view class="section nutrition-section">
+    <view class="section-header">
+      <text class="section-title">营养成分（每份）</text>
+    </view>
+    <view class="nutrition-grid">
+      <view class="nutrition-item">
+        <text class="nutrition-value">{{recipe.nutritionPerServing.calories}}</text>
+        <text class="nutrition-label">千卡</text>
+        <text class="nutrition-name">热量</text>
+      </view>
+      <view class="nutrition-item">
+        <text class="nutrition-value">{{recipe.nutritionPerServing.protein}}</text>
+        <text class="nutrition-label">克</text>
+        <text class="nutrition-name">蛋白质</text>
+      </view>
+      <view class="nutrition-item">
+        <text class="nutrition-value">{{recipe.nutritionPerServing.fat}}</text>
+        <text class="nutrition-label">克</text>
+        <text class="nutrition-name">脂肪</text>
+      </view>
+      <view class="nutrition-item">
+        <text class="nutrition-value">{{recipe.nutritionPerServing.carbs}}</text>
+        <text class="nutrition-label">克</text>
+        <text class="nutrition-name">碳水</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 小贴士 -->
+  <view class="section tips-section" wx:if="{{recipe.tips}}">
+    <view class="section-header">
+      <text class="section-title">小贴士</text>
+    </view>
+    <view class="tips-content">
+      <text>{{recipe.tips}}</text>
+    </view>
+  </view>
+
+  <!-- 底部操作栏 -->
+  <view class="bottom-bar safe-area-bottom">
+    <view class="bar-btn" bindtap="addCookRecord">
+      <text>记录做菜</text>
+    </view>
+    <view class="bar-btn primary" bindtap="addToShoppingList">
+      <text>生成购物清单</text>
+    </view>
+  </view>
+</view>
+
+<!-- 加载中 -->
+<view class="loading-state" wx:if="{{loading}}">
+  <text>加载中...</text>
+</view>

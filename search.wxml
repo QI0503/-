@@ -1,0 +1,76 @@
+<!-- 搜索页 - ZQQ&LWW的云厨房 -->
+<view class="page-search">
+  <!-- 搜索栏 -->
+  <view class="search-header">
+    <view class="search-bar">
+      <image class="search-icon" src="/images/icons/icon_search.png" mode="aspectFit"></image>
+      <input class="search-input" placeholder="搜索菜名、食材、标签..." value="{{keyword}}" bindinput="onInput" bindconfirm="doSearch" focus="{{true}}" confirm-type="search"></input>
+      <view class="clear-btn" wx:if="{{keyword}}" bindtap="clearKeyword">
+        <text>×</text>
+      </view>
+    </view>
+    <view class="cancel-btn" bindtap="goBack">
+      <text>取消</text>
+    </view>
+  </view>
+
+  <!-- 搜索历史 -->
+  <view class="history-section" wx:if="{{searchHistory.length > 0 && !keyword}}">
+    <view class="section-header">
+      <text class="section-title">搜索历史</text>
+      <view class="clear-history" bindtap="clearHistory">
+        <text>清空</text>
+      </view>
+    </view>
+    <view class="history-tags">
+      <view class="history-tag" wx:for="{{searchHistory}}" wx:key="*this" bindtap="searchByHistory" data-keyword="{{item}}">
+        <text>{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 热门搜索 -->
+  <view class="hot-section" wx:if="{{!keyword}}">
+    <view class="section-header">
+      <text class="section-title">热门搜索</text>
+    </view>
+    <view class="hot-tags">
+      <view class="hot-tag" wx:for="{{hotKeywords}}" wx:key="*this" bindtap="searchByHistory" data-keyword="{{item}}">
+        <text>{{item}}</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 搜索结果 -->
+  <view class="result-section" wx:if="{{keyword}}">
+    <view class="result-header" wx:if="{{resultList.length > 0}}">
+      <text>找到 {{resultCount}} 个结果</text>
+    </view>
+    
+    <view class="result-list">
+      <view class="recipe-card" wx:for="{{resultList}}" wx:key="_id" bindtap="goToDetail" data-id="{{item._id}}">
+        <image class="recipe-cover" src="{{item.coverImage}}" mode="aspectFill"></image>
+        <view class="recipe-info">
+          <text class="recipe-name">{{item.name}}</text>
+          <text class="recipe-desc ellipsis-2">{{item.coverDesc}}</text>
+          <view class="recipe-meta">
+            <text class="tag">{{item.category.cuisine}}</text>
+            <text class="tag">{{item.category.taste}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:if="{{resultList.length === 0 && !loading && keyword}}">
+      <image src="/images/empty/empty_search.png" mode="aspectFit"></image>
+      <text>没有找到相关菜谱</text>
+      <text class="empty-tip">换个关键词试试吧</text>
+    </view>
+
+    <!-- 加载中 -->
+    <view class="loading-state" wx:if="{{loading}}">
+      <text>搜索中...</text>
+    </view>
+  </view>
+</view>

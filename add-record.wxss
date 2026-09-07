@@ -1,0 +1,263 @@
+/* 添加做菜记录页样式 */
+
+.page-add-record {
+  padding: 20rpx 30rpx;
+  padding-bottom: 120rpx;
+}
+
+/* 通用section */
+.section {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 4rpx 20rpx rgba(255, 107, 157, 0.1);
+}
+
+.section-header {
+  margin-bottom: 20rpx;
+}
+
+.section-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 选择菜谱 */
+.selected-recipe {
+  display: flex;
+  align-items: center;
+  padding: 15rpx;
+  background: #FFF5F8;
+  border-radius: 15rpx;
+}
+
+.recipe-cover {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+
+.recipe-name {
+  flex: 1;
+  font-size: 28rpx;
+  color: #333;
+}
+
+.change-text {
+  font-size: 26rpx;
+  color: #FF6B9D;
+}
+
+.select-recipe-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100rpx;
+  background: #FFF5F8;
+  border: 2rpx dashed #FF6B9D;
+  border-radius: 15rpx;
+}
+
+.select-recipe-btn text {
+  font-size: 28rpx;
+  color: #FF6B9D;
+}
+
+/* 日期选择 */
+.date-picker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80rpx;
+  background: #FFF5F8;
+  border-radius: 15rpx;
+}
+
+.date-picker text {
+  font-size: 28rpx;
+  color: #333;
+}
+
+/* 照片上传 */
+.photo-area {
+  position: relative;
+  width: 100%;
+  height: 400rpx;
+  border-radius: 15rpx;
+  overflow: hidden;
+}
+
+.photo-preview {
+  width: 100%;
+  height: 100%;
+}
+
+.photo-delete {
+  position: absolute;
+  top: 15rpx;
+  right: 15rpx;
+  width: 50rpx;
+  height: 50rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: 32rpx;
+  border-radius: 50%;
+}
+
+.photo-upload {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300rpx;
+  background: #FFF5F8;
+  border: 2rpx dashed #FF6B9D;
+  border-radius: 15rpx;
+}
+
+.camera-icon {
+  width: 80rpx;
+  height: 80rpx;
+  margin-bottom: 15rpx;
+}
+
+.photo-upload text {
+  font-size: 28rpx;
+  color: #FF6B9D;
+}
+
+/* 做菜感受 */
+.note-input {
+  width: 100%;
+  height: 200rpx;
+  padding: 20rpx;
+  background: #FFF5F8;
+  border-radius: 15rpx;
+  font-size: 28rpx;
+  color: #333;
+  box-sizing: border-box;
+}
+
+.note-count {
+  display: block;
+  text-align: right;
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 10rpx;
+}
+
+/* 提交按钮 */
+.submit-btn-wrap {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 30rpx;
+  background: #fff;
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.05);
+}
+
+.submit-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90rpx;
+  background: linear-gradient(135deg, #FF6B9D, #FF8FB5);
+  border-radius: 50rpx;
+}
+
+.submit-btn.disabled {
+  opacity: 0.5;
+}
+
+.submit-btn text {
+  font-size: 32rpx;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* 菜谱选择弹窗 */
+.recipe-picker-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+}
+
+.recipe-picker {
+  width: 100%;
+  max-height: 70vh;
+  background: #fff;
+  border-radius: 30rpx 30rpx 0 0;
+  overflow: hidden;
+}
+
+.picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.picker-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.picker-close {
+  font-size: 40rpx;
+  color: #999;
+}
+
+.picker-search {
+  padding: 20rpx 30rpx;
+}
+
+.search-input {
+  height: 70rpx;
+  padding: 0 25rpx;
+  background: #F5F5F5;
+  border-radius: 35rpx;
+  font-size: 28rpx;
+}
+
+.picker-list {
+  max-height: 50vh;
+  padding: 0 30rpx;
+}
+
+.picker-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.picker-item:last-child {
+  border-bottom: none;
+}
+
+.item-cover {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 10rpx;
+  margin-right: 20rpx;
+}
+
+.item-name {
+  font-size: 28rpx;
+  color: #333;
+}

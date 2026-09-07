@@ -1,0 +1,107 @@
+<!-- 首页 - ZQQ&LWW的云厨房 -->
+<view class="page-index">
+  <!-- 搜索栏 -->
+  <view class="search-bar" bindtap="goToSearch">
+    <view class="search-inner">
+      <image class="search-icon" src="/images/icons/icon_search.png" mode="aspectFit"></image>
+      <text class="search-placeholder">搜索你想吃的菜...</text>
+    </view>
+  </view>
+
+  <!-- 每日推荐 -->
+  <view class="section daily-recommend" wx:if="{{dailyRecipe}}">
+    <view class="section-header">
+      <text class="section-title">今日推荐</text>
+      <text class="section-subtitle">每天一道好菜</text>
+    </view>
+    <view class="recommend-card" bindtap="goToDetail" data-id="{{dailyRecipe._id}}">
+      <image class="recommend-cover" src="{{dailyRecipe.coverImage}}" mode="aspectFill"></image>
+      <view class="recommend-info">
+        <text class="recommend-name">{{dailyRecipe.name}}</text>
+        <text class="recommend-desc">{{dailyRecipe.coverDesc}}</text>
+        <view class="recommend-tags">
+          <text class="tag">{{dailyRecipe.category.cuisine}}</text>
+          <text class="tag">{{dailyRecipe.category.taste}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 快捷入口 -->
+  <view class="section quick-entry">
+    <view class="section-header">
+      <text class="section-title">快捷功能</text>
+    </view>
+    <view class="entry-grid">
+      <view class="entry-item" bindtap="goToPage" data-url="/pages/fridge/fridge">
+        <view class="entry-icon fridge-icon">🍳</view>
+        <text class="entry-text">冰箱推荐</text>
+      </view>
+      <view class="entry-item" bindtap="goToPage" data-url="/pages/shopping/shopping">
+        <view class="entry-icon shopping-icon">🛒</view>
+        <text class="entry-text">购物清单</text>
+      </view>
+      <view class="entry-item" bindtap="goToPage" data-url="/pages/nutrition/nutrition">
+        <view class="entry-icon nutrition-icon">📊</view>
+        <text class="entry-text">营养统计</text>
+      </view>
+      <view class="entry-item" bindtap="goToPage" data-url="/pages/cook-record/cook-record">
+        <view class="entry-icon record-icon">📝</view>
+        <text class="entry-text">做菜记录</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 最近收藏 -->
+  <view class="section recent-favorites" wx:if="{{recentFavorites.length > 0}}">
+    <view class="section-header">
+      <text class="section-title">最近收藏</text>
+      <text class="section-more" bindtap="goToPage" data-url="/pages/favorites/favorites">查看全部</text>
+    </view>
+    <scroll-view class="favorites-scroll" scroll-x enable-flex>
+      <view class="favorite-item" wx:for="{{recentFavorites}}" wx:key="_id" bindtap="goToDetail" data-id="{{item._id}}">
+        <image class="favorite-cover" src="{{item.coverImage}}" mode="aspectFill"></image>
+        <text class="favorite-name ellipsis">{{item.name}}</text>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 猜你喜欢 -->
+  <view class="section recommend-list">
+    <view class="section-header">
+      <text class="section-title">猜你喜欢</text>
+      <view class="refresh-btn" bindtap="refreshRecommend">
+        <text>换一批</text>
+      </view>
+    </view>
+    <view class="recipe-list">
+      <view class="recipe-card" wx:for="{{recommendList}}" wx:key="_id" bindtap="goToDetail" data-id="{{item._id}}">
+        <image class="recipe-cover" src="{{item.coverImage}}" mode="aspectFill"></image>
+        <view class="recipe-info">
+          <text class="recipe-name ellipsis">{{item.name}}</text>
+          <view class="recipe-meta">
+            <view class="meta-item">
+              <image class="meta-icon" src="/images/icons/icon_time.png" mode="aspectFit"></image>
+              <text>{{item.duration}}分钟</text>
+            </view>
+            <view class="meta-item">
+              <image class="meta-icon" src="/images/icons/icon_difficulty.png" mode="aspectFit"></image>
+              <text>{{item.difficultyText}}</text>
+            </view>
+          </view>
+          <view class="recipe-tags">
+            <text class="tag" wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">{{tag}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 加载更多 -->
+  <view class="load-more" wx:if="{{hasMore}}">
+    <text>加载中...</text>
+  </view>
+  <view class="load-more" wx:if="{{!hasMore && recommendList.length > 0}}">
+    <text>没有更多了~</text>
+  </view>
+</view>
